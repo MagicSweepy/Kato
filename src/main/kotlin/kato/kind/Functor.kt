@@ -1,4 +1,7 @@
-package kato
+package kato.kind
+
+import kato.type.TypeAccessor
+import kato.type.Unary
 
 interface Functor<F : TypeAccessor<Unary>>
 {
