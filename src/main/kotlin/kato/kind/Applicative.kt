@@ -1,6 +1,5 @@
 package kato.kind
 
-import kato.kind.Functor
 import kato.extension.curry
 import kato.extension.uncurry
 import kato.type.TypeAccessor
