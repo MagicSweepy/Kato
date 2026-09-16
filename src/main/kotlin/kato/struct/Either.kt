@@ -1,4 +1,4 @@
-package kato.kind
+package kato.struct
 
 sealed interface Either<L, out R>
 {

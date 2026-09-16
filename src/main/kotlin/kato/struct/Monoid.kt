@@ -1,4 +1,4 @@
-package kato.kind
+package kato.struct
 
 interface Monoid<T> : SemiGroup<T>
 {

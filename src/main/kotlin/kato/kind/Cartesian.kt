@@ -1,5 +1,6 @@
 package kato.kind
 
+import kato.struct.Monoid
 import kato.type.TypeAccessor
 import kato.type.Unary
 

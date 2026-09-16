@@ -1,4 +1,4 @@
-package kato.kind
+package kato.struct
 
 fun interface SemiGroup<T>
 {
