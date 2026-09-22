@@ -1,6 +1,6 @@
 @file:Suppress("unused")
 
-package kato.extension
+package kato.struct
 
 // region curryN
 

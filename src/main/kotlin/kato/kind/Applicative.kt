@@ -1,7 +1,7 @@
 package kato.kind
 
-import kato.extension.curry
-import kato.extension.uncurry
+import kato.struct.curry
+import kato.struct.uncurry
 import kato.type.TypeAccessor
 import kato.type.Unary
 
