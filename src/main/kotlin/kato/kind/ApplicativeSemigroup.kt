@@ -4,7 +4,7 @@ import kato.struct.SemiGroup
 import kato.type.TypeAccessor
 import kato.type.Unary
 
-abstract class ApplicativeSemiGroup<F : TypeAccessor<Unary>, A>(private val group: SemiGroup<A>) : Applicative<F>, SemigroupK<F, A>
+abstract class ApplicativeSemigroup<F : TypeAccessor<Unary>, A>(private val group: SemiGroup<A>) : Applicative<F>, SemigroupK<F, A>
 {
     abstract override fun <A> of(a: A?): Kind<F, A>
 

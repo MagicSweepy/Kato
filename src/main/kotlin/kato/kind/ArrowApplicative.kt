@@ -18,8 +18,8 @@ class ArrowApplicative<F : TypeAccessor<Binary>, A>(private val arrow: Arrow<F>)
     override fun <B, C> lift(ff: Kind<LeftApplied<F, A>, (B) -> C>): (Kind<LeftApplied<F, A>, B>) -> Kind<LeftApplied<F, A>, C>
         = { fb -> ap(ff, fb) }
 
-    override fun <B, C> ap(ff: Kind<LeftApplied<F, A>, (B) -> C>, fb: Kind<LeftApplied<F, A>, B>): Kind<LeftApplied<F, A>, C>
-        = arrow.rmap({ (f, b) -> f(b) }, arrow.merge(ff.asLeftKind2(), fb.asLeftKind2())).asLeftApplied()
+    override fun <B, C> ap(ff: Kind<LeftApplied<F, A>, (B) -> C>, fa: Kind<LeftApplied<F, A>, B>): Kind<LeftApplied<F, A>, C>
+        = arrow.rmap({ (f, b) -> f(b) }, arrow.merge(ff.asLeftKind2(), fa.asLeftKind2())).asLeftApplied()
 
     fun <B, C> product(fb: Kind<LeftApplied<F, A>, B>, fc: Kind<LeftApplied<F, A>, C>): Kind<LeftApplied<F, A>, Pair<B, C>>
         = arrow.merge(fb.asLeftKind2(), fc.asLeftKind2()).asLeftApplied()
