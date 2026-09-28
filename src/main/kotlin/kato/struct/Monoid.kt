@@ -28,5 +28,12 @@ interface Monoid<T> : SemiGroup<T>
 
             override fun combine(a: Set<T>, b: Set<T>): Set<T> = a + b
         }
+
+        fun <T> first(): Monoid<T?> = object : Monoid<T?>
+        {
+            override fun empty(): T? = null
+
+            override fun combine(a: T?, b: T?): T? = a ?: b
+        }
     }
 }
