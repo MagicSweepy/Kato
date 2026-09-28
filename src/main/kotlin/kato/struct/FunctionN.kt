@@ -65,3 +65,35 @@ fun <A, B, C, R> ((Triple<A, B, C>) -> R).untupled(): (A, B, C) -> R
     = { a1, a2, a3 -> invoke(Triple(a1, a2, a3)) }
 
 // endregion
+
+// region andThenN
+
+infix fun <A, B, C> ((A) -> B).andThen(f: (B) -> C): (A) -> C
+    = { a -> f(this(a)) }
+
+infix fun <A, B, C, D> ((A, B) -> C).andThen(f: (C) -> D): (A, B) -> D
+    = { a, b -> f(this(a, b)) }
+
+infix fun <A, B, C, D, E> ((A, B, C) -> D).andThen(f: (D) -> E): (A, B, C) -> E
+    = { a, b, c -> f(this(a, b, c)) }
+
+infix fun <A, B, C, D, E, F> ((A, B, C, D) -> E).andThen(f: (E) -> F): (A, B, C, D) -> F
+    = { a, b, c, d -> f(this(a, b, c, d)) }
+
+// endregion
+
+// region composeN
+
+infix fun <A, B, C> ((B) -> C).compose(f: (A) -> B): (A) -> C
+    = { a -> this(f(a)) }
+
+infix fun <A, B, C, D> ((C) -> D).compose(f: (A, B) -> C): (A, B) -> D
+    = { a, b -> this(f(a, b)) }
+
+infix fun <A, B, C, D, E> ((D) -> E).compose(f: (A, B, C) -> D): (A, B, C) -> E
+    = { a, b, c -> this(f(a, b, c)) }
+
+infix fun <A, B, C, D, E, F> ((E) -> F).compose(f: (A, B, C, D) -> E): (A, B, C, D) -> F
+    = { a, b, c, d -> this(f(a, b, c, d)) }
+
+// endregion
