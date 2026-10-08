@@ -1,8 +1,8 @@
 package kato.law
 
 /**
- * A law is something cannot protect by compiler or runtime, but it is required
- * in the structure, e.g. commutative or associative.
+ * A law is something cannot constraint by compiler or runtime, but it is
+ * required in the structure, e.g. commutative or associative.
  *
  * For multiple laws, please repeat it with multiple annotations on it.
  *
