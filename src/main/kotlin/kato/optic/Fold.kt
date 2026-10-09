@@ -20,6 +20,10 @@ interface Fold<S, T, A, B> : Optic<S, T, A, B>
     fun length(s: S): Int = foldMap(Monoid.intAdd(), { 1 }, s)
 
     fun isEmpty(s: S): Boolean = !foldMap(Monoid.boolOr(), { true }, s)
+
+    fun contains(p: (A) -> Boolean, s: S): Boolean = foldMap(Monoid.boolOr(), { p(it) }, s)
+
+    fun find(p: (A) -> Boolean, s: S): A? = foldMap(Monoid.firstOption(), { if (p(it)) it else null }, s)
 }
 
 fun <S, T, A, B> Optic<S, T, A, B>.asFold(): Fold<S, T, A, B> = object : Fold<S, T, A, B>

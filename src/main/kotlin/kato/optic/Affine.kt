@@ -16,6 +16,8 @@ interface Affine<S, T, A, B> : Optic<S, T, A, B>
 
     fun matches(s: S): Boolean = preview(s).isRight
 
+    fun modify(f: (A) -> B, s: S): T = preview(s).fold({ it }, { set(f(it), s) })
+
     @Suppress("UNCHECKED_CAST")
     override fun <P : TypeAccessor<Binary>> eval(p: Profunctor<P>, pab: Kind2<P, A, B>): Kind2<P, S, T>
     {

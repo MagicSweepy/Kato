@@ -10,7 +10,7 @@ interface Grate<S, T, A, B> : Optic<S, T, A, B>
 {
     fun grate(f: ((S) -> A) -> B): T
 
-    fun over(f: (A) -> B, s: S): T = grate { f(it(s)) }
+    fun modify(f: (A) -> B, s: S): T = grate { f(it(s)) }
 
     fun set(b: B, s: S): T = grate { _ -> b }
 

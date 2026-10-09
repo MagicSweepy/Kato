@@ -11,7 +11,6 @@ import kato.kind.Kind
 import kato.kind.Kind2
 import kato.kind.Profunctor
 import kato.kind.Wander
-import kato.optic.IndexedFold
 import kato.struct.Monoid
 import kato.type.Binary
 import kato.type.TypeAccessor
@@ -21,9 +20,9 @@ import kato.type.runId
 
 interface IndexedTraversal<I, S, T, A, B> : IndexedOptic<I, S, T, A, B>, IndexedWander<I, S, T, A, B>
 {
-    fun over(f: (I, A) -> B, s: S): T = wanderI(IdApplicative, { i, a -> Id(f(i, a)) })(s).runId()
+    fun modify(f: (I, A) -> B, s: S): T = wanderI(IdApplicative, { i, a -> Id(f(i, a)) })(s).runId()
 
-    fun set(b: B, s: S): T = over({ _, _ -> b }, s)
+    fun set(b: B, s: S): T = modify({ _, _ -> b }, s)
 
     fun <M> foldMap(m: Monoid<M>, f: (I, A) -> M, s: S): M
         = wanderI(ConstApplicative(m), { i, a -> Const(f(i, a)) })(s).runConst()
