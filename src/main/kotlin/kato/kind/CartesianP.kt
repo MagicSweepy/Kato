@@ -3,7 +3,7 @@ package kato.kind
 import kato.type.Binary
 import kato.type.TypeAccessor
 
-interface Cartesian2<F : TypeAccessor<Binary>> : Profunctor<F>
+interface CartesianP<F : TypeAccessor<Binary>> : Profunctor<F>
 {
     fun <A, B, C> first(fa: Kind2<F, A, B>): Kind2<F, Pair<A, C>, Pair<B, C>>
 

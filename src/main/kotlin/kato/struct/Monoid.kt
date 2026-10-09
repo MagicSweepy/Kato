@@ -15,6 +15,41 @@ interface Monoid<T> : SemiGroup<T>
 
     companion object
     {
+        fun intAdd(): Monoid<Int> = object : Monoid<Int>
+        {
+            override fun empty(): Int = 0
+
+            override fun combine(a: Int, b: Int): Int = a + b
+        }
+
+        fun intPlus(): Monoid<Int> = object : Monoid<Int>
+        {
+            override fun empty(): Int = 0
+
+            override fun combine(a: Int, b: Int): Int = a * b
+        }
+
+        fun boolOr(): Monoid<Boolean> = object : Monoid<Boolean>
+        {
+            override fun empty(): Boolean = false
+
+            override fun combine(a: Boolean, b: Boolean): Boolean = a || b
+        }
+
+        fun boolAnd(): Monoid<Boolean> = object : Monoid<Boolean>
+        {
+            override fun empty(): Boolean = false
+
+            override fun combine(a: Boolean, b: Boolean): Boolean = a && b
+        }
+
+        fun string(): Monoid<String> = object : Monoid<String>
+        {
+            override fun empty(): String = ""
+
+            override fun combine(a: String, b: String): String = a + b
+        }
+
         fun <T> list(): Monoid<List<T>> = object : Monoid<List<T>>
         {
             override fun empty(): List<T> = emptyList()
@@ -29,7 +64,7 @@ interface Monoid<T> : SemiGroup<T>
             override fun combine(a: Set<T>, b: Set<T>): Set<T> = a + b
         }
 
-        fun <T> first(): Monoid<T?> = object : Monoid<T?>
+        fun <T> firstOption(): Monoid<T?> = object : Monoid<T?>
         {
             override fun empty(): T? = null
 

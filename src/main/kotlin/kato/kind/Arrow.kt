@@ -3,7 +3,7 @@ package kato.kind
 import kato.type.Binary
 import kato.type.TypeAccessor
 
-interface Arrow<F : TypeAccessor<Binary>> : Category<F>, Cartesian2<F>
+interface Arrow<F : TypeAccessor<Binary>> : Category<F>, CartesianP<F>
 {
     fun <A, B> lift(f: (A) -> B): Kind2<F, A, B>
 
