@@ -1,7 +1,7 @@
 package kato.optic
 
-import kato.kind.Cartesian2
-import kato.kind.Cocartesian2
+import kato.kind.CartesianP
+import kato.kind.CocartesianP
 import kato.kind.Kind2
 import kato.kind.Profunctor
 import kato.struct.Either
@@ -19,8 +19,8 @@ interface Affine<S, T, A, B> : Optic<S, T, A, B>
     @Suppress("UNCHECKED_CAST")
     override fun <P : TypeAccessor<Binary>> eval(p: Profunctor<P>, pab: Kind2<P, A, B>): Kind2<P, S, T>
     {
-        val c = p as Cartesian2<P>
-        val cc = p as Cocartesian2<P>
+        val c = p as CartesianP<P>
+        val cc = p as CocartesianP<P>
         val pp = c.rmap({ p: Pair<B, S> -> set(p.first, p.second) }, c.first(pab))
         return cc.dimap({ s: S -> preview(s).fold({ Either.right<Pair<A, S>, T>(it) },
                                                   { Either.left<Pair<A, S>, T>(Pair(it, it) as Pair<A, S>) }) },

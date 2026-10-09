@@ -1,6 +1,6 @@
 package kato.optic
 
-import kato.kind.Cartesian2
+import kato.kind.CartesianP
 import kato.kind.Kind2
 import kato.kind.Profunctor
 import kato.type.Binary
@@ -16,7 +16,7 @@ interface Lens<S, T, A, B> : Optic<S, T, A, B>
 
     override fun <P : TypeAccessor<Binary>> eval(p: Profunctor<P>, pab: Kind2<P, A, B>): Kind2<P, S, T>
     {
-        val c = p as Cartesian2<P>
+        val c = p as CartesianP<P>
         return c.dimap({ Pair(view(it), it) }, { p: Pair<B, S> -> update(p.first, p.second) }, c.first(pab))
     }
 

@@ -1,6 +1,6 @@
 package kato.optic
 
-import kato.kind.Cocartesian2
+import kato.kind.CocartesianP
 import kato.kind.Kind2
 import kato.kind.Profunctor
 import kato.struct.Either
@@ -21,7 +21,7 @@ interface Prism<S, T, A, B> : Optic<S, T, A, B>
 
     override fun <P : TypeAccessor<Binary>> eval(p: Profunctor<P>, pab: Kind2<P, A, B>): Kind2<P, S, T>
     {
-        val c = p as Cocartesian2<P>
+        val c = p as CocartesianP<P>
         return c.dimap({ match(it) }, { e: Either<T, B> -> e.fold({ it }, { build(it) }) }, c.right(pab))
     }
 
