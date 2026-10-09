@@ -1,6 +1,7 @@
 package kato.optic
 
-import kato.law.Law
+import kato.kind.Applicative
+import kato.law.DerivativeLaw
 
-@Law("all instance should be applicative")
+@DerivativeLaw<Applicative<*>>
 interface VApplicativeOptic<S, T, A, B> : VOptic<S, T, A, B>
