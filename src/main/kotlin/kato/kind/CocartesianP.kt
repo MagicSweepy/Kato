@@ -4,9 +4,9 @@ import kato.struct.Either
 import kato.type.Binary
 import kato.type.TypeAccessor
 
-interface CocartesianP<F : TypeAccessor<Binary>> : Profunctor<F>
+interface CocartesianP<P : TypeAccessor<Binary>> : Profunctor<P>
 {
-    fun <A, B, C> left(fab: Kind2<F, A, B>): Kind2<F, Either<A, C>, Either<B, C>>
+    fun <A, B, C> left(pab: Kind2<P, A, B>): Kind2<P, Either<A, C>, Either<B, C>>
 
-    fun <A, B, C> right(fab: Kind2<F, A, B>): Kind2<F, Either<C, A>, Either<C, B>>
+    fun <A, B, C> right(pab: Kind2<P, A, B>): Kind2<P, Either<C, A>, Either<C, B>>
 }

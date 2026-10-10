@@ -12,10 +12,10 @@ interface Arrow<F : TypeAccessor<Binary>> : Category<F>, CartesianP<F>
     override fun <A, B, C, D> dimap(f: (C) -> A, g: (B) -> D, fab: Kind2<F, A, B>): Kind2<F, C, D>
         = compose(lift(g), invoke(lift(f), fab))
 
-    override fun <A, B, C> second(fa: Kind2<F, A, B>): Kind2<F, Pair<C, A>, Pair<C, B>>
+    override fun <A, B, C> second(pab: Kind2<F, A, B>): Kind2<F, Pair<C, A>, Pair<C, B>>
     {
         fun <X, Y> swap(): Kind2<F, Pair<X, Y>, Pair<Y, X>> = lift { (x, y) -> y to x }
-        return compose(swap(), compose(first(fa), swap()))
+        return compose(swap(), compose(first(pab), swap()))
     }
 
     fun <A, B, C, D> split(f: Kind2<F, A, B>, g: Kind2<F, C, D>): Kind2<F, Pair<A, C>, Pair<B, D>>

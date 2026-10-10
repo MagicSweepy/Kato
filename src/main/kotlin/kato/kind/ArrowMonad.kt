@@ -41,8 +41,8 @@ fun <M : TypeAccessor<Unary>> Monad<M>.toArrowMonad(): ArrowMonad<Kleisli<M>> = 
     override fun <A, B> lift(f: (A) -> B): Kind2<Kleisli<M>, A, B>
         = KleisliArrow { a -> this@toArrowMonad.of(f(a)) }
 
-    override fun <A, B, C> first(fa: Kind2<Kleisli<M>, A, B>): Kind2<Kleisli<M>, Pair<A, C>, Pair<B, C>>
-        = KleisliArrow { (a, c) -> this@toArrowMonad.map({ b -> b to c }, fa.asKleisli().run(a)) }
+    override fun <A, B, C> first(pab: Kind2<Kleisli<M>, A, B>): Kind2<Kleisli<M>, Pair<A, C>, Pair<B, C>>
+        = KleisliArrow { (a, c) -> this@toArrowMonad.map({ b -> b to c }, pab.asKleisli().run(a)) }
 
     override fun <A, B, C> flatMap(f: (B) -> Kind2<Kleisli<M>, A, C>, fab: Kind2<Kleisli<M>, A, B>): Kind2<Kleisli<M>, A, C>
         = KleisliArrow { a -> this@toArrowMonad.flatMap({ b -> f(b).asKleisli().run(a) }, fab.asKleisli().run(a)) }
